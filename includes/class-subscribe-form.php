@@ -23,7 +23,10 @@ class SubscribeForm
             // Instruction: check if $email is valid, then add it into database, and return 'You have successfully subscribed to our newsletter'
         if(empty($email))
             {
-                return 'Email is required !';
+                return [
+                    "status"=>"error",
+                    "message"=>"Email is required !"
+                ];
             }
             
             $statement = $this->database->prepare('INSERT INTO subscribe_list (email) VALUES (:email) ');
@@ -31,7 +34,10 @@ class SubscribeForm
                 'email'=>$email
             ]);
 
-            return 'You have successfully subscribed to our newsletter !';
+            return [
+                "status"=>"success",
+                "message"=>"You have successfully subscribed to our newsletter !"
+            ];
 
 
         // Only change code above this line

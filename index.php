@@ -19,7 +19,7 @@
         // Only change code below this line
 
             // Instruction: trigger the subscribe function in $subscribeForm, and store the result into $result variable
-            $result = $subscribeForm->subscribe($email);
+            $message = $subscribeForm->subscribe($email);
 
         // Only change code above this line
     }
@@ -54,10 +54,14 @@
 
                     <!-- Instruction: Put error message or success message here -->
 
-                    <?php if( isset($result)) : ?>
+                    <?php if( isset($message['status']) && $message['status']=='success') : ?>
                     <div class="alert alert-info">
-                      <?= $result; ?>
+                      <?= $message['message']; ?>
                     </div>
+                    <?php elseif( isset($message['status']) && $message['status']=='error') : ?>
+                        <div class="alert alert-danger">
+                          <?= $message['message']; ?>
+                        </div>
                     <?php endif; ?>
 
                 <!-- Only change code above this line -->
