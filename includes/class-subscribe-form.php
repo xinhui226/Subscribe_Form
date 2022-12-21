@@ -25,15 +25,13 @@ class SubscribeForm
             {
                 return 'Email is required !';
             }
-        else
-        {
+            
             $statement = $this->database->prepare('INSERT INTO subscribe_list (email) VALUES (:email) ');
             $statement->execute([
                 'email'=>$email
             ]);
 
             return 'You have successfully subscribed to our newsletter !';
-        }
 
 
         // Only change code above this line
